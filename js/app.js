@@ -319,7 +319,7 @@ function renderRecommendation() {
                 <h3>${prog.name}</h3>
                 <p class="desc">${prog.desc}</p>
                 <div class="card-footer">
-                    <button class="btn btn-primary" style="width: 100%; border-radius: 8px;" onclick="goToComparison()">Bandingkan Detail</button>
+                    <button class="btn btn-primary" style="width: 100%; border-radius: 8px;" onclick="openProgramModal('${prog.id}')">Detail Prodi</button>
                 </div>
             </div>
         `;
@@ -327,9 +327,8 @@ function renderRecommendation() {
 
     html += `</div>
         <div class="page-actions">
-            <button class="btn btn-outline btn-lg" onclick="navigateTo('landing')"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</button>
-            <button class="btn btn-primary btn-lg" onclick="document.querySelector('.nav-item[data-route=\\'all-programs\\']').click()">
-                <i class="fa-solid fa-list"></i> Lihat Seluruh Daftar Prodi
+            <button class="btn btn-primary btn-lg" onclick="goToComparison()">
+                <i class="fa-solid fa-code-compare"></i> Bandingkan Program
             </button>
         </div>
     `;
@@ -465,8 +464,9 @@ function renderSummary() {
             
             <div class="page-actions">
                 <button class="btn btn-outline btn-lg" onclick="navigateTo('comparison')"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
-                <button class="btn btn-outline btn-lg" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak Hasil</button>
-                <button class="btn btn-primary btn-lg" onclick="resetSimulation()"><i class="fa-solid fa-rotate-right"></i> Ulangi Simulasi</button>
+                <button class="btn btn-primary btn-lg" onclick="document.querySelector('.nav-item[data-route=\\'all-programs\\']').click()">
+                    Selanjutnya (Daftar Prodi) <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
         </div>
     `;
@@ -575,9 +575,131 @@ function closeProgramModal() {
     }
 }
 
+// Settings Menu Logic
+function initSettingsMenu() {
+    const settingsBtn = document.getElementById('settings-toggle');
+    const settingsMenu = document.getElementById('settings-menu');
+    const themeSwitch = document.getElementById('theme-switch');
+    const animSwitch = document.getElementById('anim-switch');
+
+    // Toggle menu
+    if (settingsBtn && settingsMenu) {
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsMenu.classList.toggle('hidden');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!settingsMenu.contains(e.target) && !settingsBtn.contains(e.target)) {
+                settingsMenu.classList.add('hidden');
+            }
+        });
+    }
+
+    // Init Theme
+    const savedTheme = localStorage.getItem('simprodi_theme') || 'light';
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (themeSwitch) themeSwitch.checked = true;
+    }
+    
+    if (themeSwitch) {
+        themeSwitch.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('simprodi_theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('simprodi_theme', 'light');
+            }
+        });
+    }
+
+    // Init Animation
+    const savedAnim = localStorage.getItem('simprodi_animation') || 'on';
+    if (savedAnim === 'off') {
+        document.documentElement.setAttribute('data-animation', 'false');
+        if (animSwitch) animSwitch.checked = true;
+    }
+    
+    if (animSwitch) {
+        animSwitch.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-animation', 'false');
+                localStorage.setItem('simprodi_animation', 'off');
+            } else {
+                document.documentElement.removeAttribute('data-animation');
+                localStorage.setItem('simprodi_animation', 'on');
+            }
+        });
+    }
+
+    // Init Contrast
+    const contrastSwitch = document.getElementById('contrast-switch');
+    const savedContrast = localStorage.getItem('simprodi_contrast') || 'normal';
+    if (savedContrast === 'high') {
+        document.documentElement.setAttribute('data-contrast', 'high');
+        if (contrastSwitch) contrastSwitch.checked = true;
+    }
+    
+    if (contrastSwitch) {
+        contrastSwitch.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-contrast', 'high');
+                localStorage.setItem('simprodi_contrast', 'high');
+            } else {
+                document.documentElement.removeAttribute('data-contrast');
+                localStorage.setItem('simprodi_contrast', 'normal');
+            }
+        });
+    }
+
+    // Init Font Size
+    const fontDecrease = document.getElementById('font-decrease');
+    const fontReset = document.getElementById('font-reset');
+    const fontIncrease = document.getElementById('font-increase');
+    
+    let currentFontSize = parseInt(localStorage.getItem('simprodi_fontsize')) || 100;
+    
+    const applyFontSize = (size) => {
+        document.documentElement.style.fontSize = size + '%';
+        localStorage.setItem('simprodi_fontsize', size);
+    };
+
+    if (currentFontSize !== 100) {
+        applyFontSize(currentFontSize);
+    }
+
+    if (fontDecrease) {
+        fontDecrease.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent closing menu
+            currentFontSize = Math.max(80, currentFontSize - 10);
+            applyFontSize(currentFontSize);
+        });
+    }
+
+    if (fontReset) {
+        fontReset.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentFontSize = 100;
+            applyFontSize(currentFontSize);
+        });
+    }
+
+    if (fontIncrease) {
+        fontIncrease.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentFontSize = Math.min(130, currentFontSize + 10);
+            applyFontSize(currentFontSize);
+        });
+    }
+}
+
 // Initialize on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
+    initSettingsMenu();
 
     // Setup modal backdrop click to close
     const modal = document.getElementById('program-modal');
@@ -588,4 +710,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Accessibility: Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeProgramModal();
+        }
+    });
 });

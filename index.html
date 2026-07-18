@@ -40,6 +40,42 @@
                 <button class="nav-item" data-route="comparison" disabled aria-disabled="true">Bandingkan</button>
                 <button class="nav-item" data-route="summary" disabled aria-disabled="true">Ringkasan</button>
                 <button class="nav-item" data-route="all-programs">Daftar Prodi</button>
+                <div class="settings-dropdown-wrapper" style="position: relative;">
+                    <button id="settings-toggle" class="nav-item" aria-label="Pengaturan" title="Pengaturan Aksesibilitas" style="border-radius: 50%; padding: 0.5rem 0.8rem; margin-left: 0.5rem;">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                    <div id="settings-menu" class="settings-menu hidden">
+                        <div class="settings-menu-item">
+                            <span><i class="fa-solid fa-moon"></i> Tema Gelap</span>
+                            <label class="switch">
+                                <input type="checkbox" id="theme-switch">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="settings-menu-item">
+                            <span><i class="fa-solid fa-ban"></i> Matikan Animasi</span>
+                            <label class="switch">
+                                <input type="checkbox" id="anim-switch">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="settings-menu-item">
+                            <span><i class="fa-solid fa-circle-half-stroke"></i> Kontras Tinggi</span>
+                            <label class="switch">
+                                <input type="checkbox" id="contrast-switch">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="settings-menu-item" style="flex-direction: column; align-items: flex-start; gap: 0.75rem;">
+                            <span><i class="fa-solid fa-font"></i> Ukuran Teks</span>
+                            <div class="font-size-controls" style="display: flex; gap: 0.5rem; width: 100%;">
+                                <button id="font-decrease" class="btn btn-outline" style="padding: 0.25rem 0; flex: 1; font-size: 0.85rem;" aria-label="Perkecil Teks">A-</button>
+                                <button id="font-reset" class="btn btn-outline" style="padding: 0.25rem 0; flex: 1; font-size: 0.95rem;" aria-label="Reset Teks">A</button>
+                                <button id="font-increase" class="btn btn-outline" style="padding: 0.25rem 0; flex: 1; font-size: 1.1rem;" aria-label="Perbesar Teks">A+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -84,7 +120,7 @@
 
                 <div class="page-actions">
                     <button class="btn btn-outline" id="btn-quiz-prev" disabled><i class="fa-solid fa-arrow-left"></i>
-                        Sebelumnya</button>
+                        Kembali</button>
                     <button class="btn btn-primary" id="btn-quiz-next">Selanjutnya</button>
                 </div>
             </div>
