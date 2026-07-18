@@ -3,26 +3,30 @@
    ========================================= */
 :root {
     /* Color Palette */
-    --color-bg: #f4f7fb;
+    --color-bg: #f9fafb;
     --color-surface: #ffffff;
-    --color-primary: #2563eb;
-    --color-primary-hover: #1d4ed8;
-    --color-secondary: #4f46e5;
-    --color-accent: #0ea5e9;
-    --color-text-dark: #0f172a;
-    --color-text-muted: #64748b;
-    --color-border: #e2e8f0;
+    --color-primary: #4f46e5;
+    --color-primary-hover: #4338ca;
+    --color-secondary: #f59e0b;
+    --color-accent: #f59e0b;
+    --color-text-dark: #111827;
+    --color-text-muted: #6b7280;
+    --color-border: #e5e7eb;
     --color-error: #ef4444;
     --color-success: #10b981;
-    
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #4f46e5, #4338ca);
+    --gradient-hover: linear-gradient(135deg, #4338ca, #3730a3);
+
     /* Typography */
     --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    
+
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    
+
     /* Transitions */
     --transition-fast: 0.15s ease;
     --transition-normal: 0.3s ease;
@@ -48,7 +52,12 @@ body {
 /* =========================================
    Typography & Accessibility (A11y)
    ========================================= */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 0.5rem;
@@ -59,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--color-primary);
+    background: var(--gradient-primary);
     color: white;
     padding: 8px;
     z-index: 100;
@@ -91,8 +100,16 @@ main {
     padding: 2rem 0;
 }
 
-.text-center { text-align: center; }
-.text-primary { color: var(--color-primary); }
+.text-center {
+    text-align: center;
+}
+
+.text-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 
 /* Buttons */
 .btn {
@@ -111,12 +128,12 @@ main {
 }
 
 .btn-primary {
-    background-color: var(--color-primary);
+    background: var(--gradient-primary);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-primary-hover);
+    background: var(--gradient-hover);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
@@ -125,8 +142,10 @@ main {
    Header & Navigation
    ========================================= */
 .navbar {
-    background-color: var(--color-surface);
-    box-shadow: var(--shadow-sm);
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
     z-index: 50;
@@ -169,11 +188,11 @@ main {
 
 .nav-item:hover:not(:disabled) {
     background-color: var(--color-bg);
-    color: var(--color-primary);
+    color: #4f46e5;
 }
 
 .nav-item.active {
-    background-color: var(--color-primary);
+    background: var(--gradient-primary);
     color: white;
 }
 
@@ -204,18 +223,25 @@ main {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =========================================
    Footer
    ========================================= */
 .footer {
-    background-color: var(--color-surface);
-    border-top: 1px solid var(--color-border);
+    background-color: #1e1b4b;
+    border-top: none;
     padding: 1.5rem 0;
-    color: var(--color-text-muted);
+    color: #e5e7eb;
     font-size: 0.875rem;
 }
 
@@ -226,9 +252,10 @@ main {
     .mobile-menu-btn {
         display: block;
     }
-    
+
     .nav-links {
-        display: none; /* hidden by default on mobile */
+        display: none;
+        /* hidden by default on mobile */
         position: absolute;
         top: 70px;
         left: 0;
@@ -238,10 +265,42 @@ main {
         padding: 1rem;
         box-shadow: var(--shadow-md);
     }
-    
+
     .nav-links.show {
         display: flex;
     }
+}
+
+/* =========================================
+   Decorative Background Blobs
+   ========================================= */
+.blob {
+    position: fixed;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.15;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    min-width: 400px;
+    min-height: 400px;
+    background: var(--color-primary);
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    min-width: 350px;
+    min-height: 350px;
+    background: var(--color-secondary);
 }
 
 /* =========================================
@@ -251,6 +310,10 @@ main {
     padding: 4rem 1rem;
     max-width: 800px;
     margin: 0 auto;
+    min-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero-title {
@@ -285,7 +348,8 @@ main {
 }
 
 .btn-outline:hover {
-    background-color: var(--color-primary);
+    background: var(--gradient-primary);
+    border-color: transparent;
     color: white;
 }
 
@@ -331,9 +395,18 @@ main {
 /* =========================================
    Questionnaire Page
    ========================================= */
+#view-questionnaire.active,
+#view-summary.active {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .questionnaire-container {
     max-width: 700px;
     margin: 0 auto;
+    width: 100%;
     background: var(--color-surface);
     padding: 2rem;
     border-radius: 12px;
@@ -358,7 +431,7 @@ main {
 
 .progress-bar {
     height: 100%;
-    background-color: var(--color-primary);
+    background: var(--gradient-primary);
     transition: width var(--transition-normal);
 }
 
@@ -402,18 +475,21 @@ main {
 
 .option-btn:hover {
     border-color: var(--color-primary);
-    background-color: rgba(37, 99, 235, 0.05);
+    background-color: rgba(79, 70, 229, 0.05);
 }
 
 .option-btn.selected {
-    border-color: var(--color-primary);
-    background-color: rgba(37, 99, 235, 0.1);
+    border-color: #4f46e5;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(79, 70, 229, 0.1));
     font-weight: 600;
 }
 
-.quiz-actions {
+.page-actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-border);
 }
@@ -467,8 +543,8 @@ main {
 .card-icon-wrapper {
     width: 70px;
     height: 70px;
-    background: rgba(37, 99, 235, 0.1);
-    color: var(--color-primary);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(79, 70, 229, 0.15));
+    color: #4f46e5;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -479,9 +555,9 @@ main {
 }
 
 .recommendation-card:hover .card-icon-wrapper {
-    background: var(--color-primary);
+    background: var(--gradient-primary);
     color: white;
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1);
 }
 
 .recommendation-card h3 {
@@ -540,7 +616,7 @@ main {
 .comparison-table th {
     text-align: left;
     padding: 1.5rem;
-    background-color: rgba(37, 99, 235, 0.03);
+    background-color: rgba(79, 70, 229, 0.05);
     border-bottom: 3px solid var(--color-primary);
     color: var(--color-primary);
     font-weight: 700;
@@ -559,7 +635,7 @@ main {
 }
 
 .comparison-table tbody tr:hover {
-    background-color: rgba(37, 99, 235, 0.02);
+    background-color: rgba(79, 70, 229, 0.03);
 }
 
 .comparison-table tbody tr:last-child td {
@@ -660,14 +736,21 @@ main {
     body {
         background-color: white;
     }
-    .navbar, .footer, .quiz-actions, .mobile-menu-btn {
+
+    .navbar,
+    .footer,
+    .page-actions,
+    .mobile-menu-btn {
         display: none !important;
     }
+
     .container {
         max-width: 100%;
         padding: 0;
     }
-    .summary-container, .feature-card {
+
+    .summary-container,
+    .feature-card {
         box-shadow: none;
         border: 1px solid #ddd;
     }

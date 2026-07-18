@@ -16,14 +16,15 @@
 </head>
 
 <body>
-    <!-- Accessibility: Skip to main content -->
-    <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
+    <!-- Decorative Background Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
 
     <!-- Header & Navigation -->
     <header class="navbar">
         <div class="container nav-container">
             <div class="logo" data-route="landing" tabindex="0" role="button">
-                <i class="fa-solid fa-compass text-primary"></i> <span>SimProdi</span>
+                <i class="fa-solid fa-graduation-cap text-primary"></i> <span>SimProdi</span>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -50,7 +51,10 @@
         <section id="view-landing" class="view active">
             <div class="hero-section text-center">
                 <h1 class="hero-title">Temukan Program Studi yang <span class="text-primary">Tepat Untukmu</span></h1>
-                <p class="hero-subtitle">Masa depan yang cerah dimulai dari pilihan yang tepat. Melalui tes berbasis psikologi interaktif, kami akan membantu Anda menganalisis minat, bakat terpendam, serta potensi karir untuk merekomendasikan program studi yang paling ideal. Mulailah langkah pertama Anda menuju kesuksesan akademis dan profesional hari ini!</p>
+                <p class="hero-subtitle">Masa depan yang cerah dimulai dari pilihan yang tepat. Melalui tes berbasis
+                    psikologi interaktif, kami akan membantu Anda menganalisis minat, bakat terpendam, serta potensi
+                    karir untuk merekomendasikan program studi yang paling ideal. Mulailah langkah pertama Anda menuju
+                    kesuksesan akademis dan profesional hari ini!</p>
                 <div class="hero-actions">
                     <button class="btn btn-primary btn-lg" id="btn-start-simulation">
                         <i class="fa-solid fa-rocket"></i> Mulai Simulasi Sekarang
@@ -62,24 +66,6 @@
                 </div>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-list-check"></i></div>
-                    <h3>Kuesioner Presisi</h3>
-                    <p>Pertanyaan dirancang berdasarkan indikator psikologis dasar untuk mengukur minat dominan Anda.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>Hasil Real-time</h3>
-                    <p>Mesin rekomendasi kami akan secara otomatis menghitung kecocokan prodi tanpa menunggu lama.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <h3>Perbandingan Rinci</h3>
-                    <p>Bandingkan biaya, durasi, dan prospek karir secara berjejer untuk keputusan yang mantap.</p>
-                </div>
-            </div>
         </section>
 
         <section id="view-questionnaire" class="view hidden" aria-hidden="true">
@@ -96,8 +82,9 @@
                     <!-- Questions injected by JS -->
                 </div>
 
-                <div class="quiz-actions">
-                    <button class="btn btn-outline" id="btn-quiz-prev" disabled>Sebelumnya</button>
+                <div class="page-actions">
+                    <button class="btn btn-outline" id="btn-quiz-prev" disabled><i class="fa-solid fa-arrow-left"></i>
+                        Sebelumnya</button>
                     <button class="btn btn-primary" id="btn-quiz-next">Selanjutnya</button>
                 </div>
             </div>

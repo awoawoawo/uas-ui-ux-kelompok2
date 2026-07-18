@@ -37,17 +37,18 @@ const AppState = {
     ],
     currentQuestionIndex: 0,
     answers: {},
+    previousView: null,
 
     // Study Programs Database
     programs: [
-        { id: "cs", name: "Ilmu Komputer / Teknik Informatika", category: "tek", desc: "Fokus mendalam pada rekayasa perangkat lunak, pengembangan algoritma kompleks, struktur data, hingga inovasi kecerdasan buatan (AI) dan keamanan siber. Lulusan dipersiapkan untuk menjadi inovator di industri teknologi global.", cost: "Rp 8-12 Juta/Semester", duration: "8 Semester", career: "Software Engineer, Data Scientist, AI Specialist" },
-        { id: "is", name: "Sistem Informasi", category: "tek", desc: "Menjembatani dua dunia: teknologi informasi dan strategi bisnis. Anda akan mempelajari bagaimana merancang, mengelola, dan mengimplementasikan sistem teknologi untuk memecahkan masalah operasional perusahaan secara efisien.", cost: "Rp 7-10 Juta/Semester", duration: "8 Semester", career: "IT Consultant, Systems Analyst, Product Manager" },
-        { id: "dkv", name: "Desain Komunikasi Visual (DKV)", category: "seni", desc: "Mempelajari seni penyampaian pesan yang efektif melalui elemen visual. Program ini melatih kreativitas Anda dalam ilustrasi, tipografi, desain UI/UX, dan branding untuk menciptakan karya yang memiliki dampak sosial maupun komersial.", cost: "Rp 9-15 Juta/Semester", duration: "8 Semester", career: "Graphic Designer, Art Director, UI/UX Designer" },
-        { id: "arch", name: "Arsitektur", category: "seni", desc: "Menggabungkan seni estetika dan perhitungan teknik yang presisi. Anda akan difokuskan pada perancangan ruang, struktur bangunan, tata kota, hingga arsitektur berkelanjutan (green design) yang ramah lingkungan dan fungsional.", cost: "Rp 10-15 Juta/Semester", duration: "8 Semester", career: "Arsitek, Urban Planner, Interior Designer" },
-        { id: "psy", name: "Psikologi", category: "sos", desc: "Menyelami kompleksitas pikiran, emosi, dan perilaku manusia. Anda akan dibekali keahlian asesmen psikologis, observasi, dan konseling untuk membantu pengembangan potensi individu dalam ranah klinis, industri, maupun pendidikan.", cost: "Rp 7-11 Juta/Semester", duration: "8 Semester", career: "HRD, Konselor, Peneliti, Psikolog (lanjutan)" },
-        { id: "ir", name: "Hubungan Internasional", category: "sos", desc: "Mempelajari dinamika politik, ekonomi, dan sosial antarnegara serta peran organisasi global. Sangat cocok bagi Anda yang memiliki ketertarikan pada isu-isu diplomasi, hukum internasional, dan kebijakan publik lintas batas.", cost: "Rp 8-12 Juta/Semester", duration: "8 Semester", career: "Diplomat, Analis Kebijakan, Konsultan Internasional" },
-        { id: "mgmt", name: "Manajemen", category: "eko", desc: "Membentuk jiwa kepemimpinan strategis dalam mengelola sumber daya organisasi. Kurikulum mencakup manajemen keuangan, pemasaran, operasi, dan sumber daya manusia untuk mencapai target bisnis di era yang kompetitif.", cost: "Rp 7-10 Juta/Semester", duration: "8 Semester", career: "Business Manager, Entrepreneur, Management Trainee" },
-        { id: "acc", name: "Akuntansi", category: "eko", desc: "Seni pencatatan, klasifikasi, dan pelaporan transaksi keuangan secara presisi dan akuntabel. Program ini mencetak profesional analitis yang andal dalam audit, perpajakan, dan sistem informasi akuntansi untuk transparansi entitas bisnis.", cost: "Rp 7-10 Juta/Semester", duration: "8 Semester", career: "Akuntan, Auditor, Analis Keuangan, Tax Consultant" }
+        { id: "cs", name: "Teknik Informatika", category: "tek", icon: "fa-laptop-code", desc: "Fokus mendalam pada rekayasa perangkat lunak, pengembangan algoritma kompleks, struktur data, hingga inovasi kecerdasan buatan (AI) dan keamanan siber. Lulusan dipersiapkan untuk menjadi inovator di industri teknologi global.", cost: "Rp 8-12 Juta/Semester", duration: "8 Semester", career: "Software Engineer, Data Scientist, AI Specialist" },
+        { id: "is", name: "Sistem Informasi", category: "tek", icon: "fa-network-wired", desc: "Menjembatani dua dunia: teknologi informasi dan strategi bisnis. Anda akan mempelajari bagaimana merancang, mengelola, dan mengimplementasikan sistem teknologi untuk memecahkan masalah operasional perusahaan secara efisien.", cost: "Rp 7-10 Juta/Semester", duration: "8 Semester", career: "IT Consultant, Systems Analyst, Product Manager" },
+        { id: "dkv", name: "Desain Komunikasi Visual (DKV)", category: "seni", icon: "fa-palette", desc: "Mempelajari seni penyampaian pesan yang efektif melalui elemen visual. Program ini melatih kreativitas Anda dalam ilustrasi, tipografi, desain UI/UX, dan branding untuk menciptakan karya yang memiliki dampak sosial maupun komersial.", cost: "Rp 9-15 Juta/Semester", duration: "8 Semester", career: "Graphic Designer, Art Director, UI/UX Designer" },
+        { id: "arch", name: "Arsitektur", category: "seni", icon: "fa-building", desc: "Menggabungkan seni estetika dan perhitungan teknik yang presisi. Anda akan difokuskan pada perancangan ruang, struktur bangunan, tata kota, hingga arsitektur berkelanjutan (green design) yang ramah lingkungan dan fungsional.", cost: "Rp 10-15 Juta/Semester", duration: "8 Semester", career: "Arsitek, Urban Planner, Interior Designer" },
+        { id: "psy", name: "Psikologi", category: "sos", icon: "fa-brain", desc: "Menyelami kompleksitas pikiran, emosi, dan perilaku manusia. Anda akan dibekali keahlian asesmen psikologis, observasi, dan konseling untuk membantu pengembangan potensi individu dalam ranah klinis, industri, maupun pendidikan.", cost: "Rp 7-11 Juta/Semester", duration: "8 Semester", career: "HRD, Konselor, Peneliti, Psikolog (lanjutan)" },
+        { id: "ir", name: "Hubungan Internasional", category: "sos", icon: "fa-earth-americas", desc: "Mempelajari dinamika politik, ekonomi, dan sosial antarnegara serta peran organisasi global. Sangat cocok bagi Anda yang memiliki ketertarikan pada isu-isu diplomasi, hukum internasional, dan kebijakan publik lintas batas.", cost: "Rp 8-12 Juta/Semester", duration: "8 Semester", career: "Diplomat, Analis Kebijakan, Konsultan Internasional" },
+        { id: "mgmt", name: "Manajemen", category: "eko", icon: "fa-chart-pie", desc: "Membentuk jiwa kepemimpinan strategis dalam mengelola sumber daya organisasi. Kurikulum mencakup manajemen keuangan, pemasaran, operasi, dan sumber daya manusia untuk mencapai target bisnis di era yang kompetitif.", cost: "Rp 7-10 Juta/Semester", duration: "8 Semester", career: "Business Manager, Entrepreneur, Management Trainee" },
+        { id: "acc", name: "Akuntansi", category: "eko", icon: "fa-calculator", desc: "Seni pencatatan, klasifikasi, dan pelaporan transaksi keuangan secara presisi dan akuntabel. Program ini mencetak profesional analitis yang andal dalam audit, perpajakan, dan sistem informasi akuntansi untuk transparansi entitas bisnis.", cost: "Rp 7-10 Juta/Semester", duration: "8 Semester", career: "Akuntan, Auditor, Analis Keuangan, Tax Consultant" }
     ],
     recommendationResult: [],
 
@@ -116,6 +117,10 @@ function toggleMobileMenu() {
 }
 
 function navigateTo(route) {
+    if (AppState.currentView && AppState.currentView !== route) {
+        AppState.previousView = AppState.currentView;
+    }
+
     // Basic validation
     const targetView = document.getElementById(`view-${route}`);
     if (!targetView) return;
@@ -222,7 +227,7 @@ function renderQuestion() {
         // Disable next if not answered
         btnNext.disabled = !AppState.answers[q.id];
         // Change text on last question
-        btnNext.innerText = AppState.currentQuestionIndex === total - 1 ? 'Lihat Rekomendasi' : 'Selanjutnya';
+        btnNext.innerHTML = AppState.currentQuestionIndex === total - 1 ? 'Lihat Rekomendasi <i class="fa-solid fa-arrow-right"></i>' : 'Selanjutnya <i class="fa-solid fa-arrow-right"></i>';
 
         const newBtnNext = btnNext.cloneNode(true);
         btnNext.parentNode.replaceChild(newBtnNext, btnNext);
@@ -309,7 +314,7 @@ function renderRecommendation() {
             <div class="recommendation-card" style="animation: fadeIn 0.5s ${delay}s both;">
                 ${rankLabel}
                 <div class="card-icon-wrapper">
-                    <i class="fa-solid fa-graduation-cap"></i>
+                    <i class="fa-solid ${prog.icon}"></i>
                 </div>
                 <h3>${prog.name}</h3>
                 <p class="desc">${prog.desc}</p>
@@ -320,7 +325,14 @@ function renderRecommendation() {
         `;
     });
 
-    html += `</div>`;
+    html += `</div>
+        <div class="page-actions">
+            <button class="btn btn-outline btn-lg" onclick="navigateTo('landing')"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</button>
+            <button class="btn btn-primary btn-lg" onclick="document.querySelector('.nav-item[data-route=\\'all-programs\\']').click()">
+                <i class="fa-solid fa-list"></i> Lihat Seluruh Daftar Prodi
+            </button>
+        </div>
+    `;
     container.innerHTML = html;
 }
 
@@ -407,8 +419,9 @@ function renderComparison() {
             </table>
         </div>
         
-        <div class="text-center" style="margin-top: 3rem;">
-            <button class="btn btn-primary btn-lg" onclick="navigateTo('summary')">Lihat Ringkasan Akhir <i class="fa-solid fa-arrow-right" style="margin-left: 0.5rem;"></i></button>
+        <div class="page-actions">
+            <button class="btn btn-outline btn-lg" onclick="navigateTo('recommendation')"><i class="fa-solid fa-arrow-left"></i> Kembali ke Rekomendasi</button>
+            <button class="btn btn-primary btn-lg" onclick="navigateTo('summary')">Lihat Ringkasan Akhir <i class="fa-solid fa-arrow-right"></i></button>
         </div>
     `;
 
@@ -431,7 +444,7 @@ function renderSummary() {
             
             <div style="margin-bottom: 2rem;">
                 <h3 style="margin-bottom: 1rem;">Kecocokan Tertinggi</h3>
-                <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--color-primary);">
+                <div style="background: rgba(79, 70, 229, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--color-primary);">
                     <h4 style="color: var(--color-primary); font-size: 1.25rem;">${topProg ? topProg.name : 'Belum ada data'}</h4>
                     <p style="margin-top: 0.5rem; color: var(--color-text-muted);">${topProg ? topProg.desc : ''}</p>
                 </div>
@@ -450,9 +463,10 @@ function renderSummary() {
                 </ul>
             </div>
             
-            <div class="quiz-actions text-center" style="justify-content: center; gap: 1rem;">
-                <button class="btn btn-outline" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak Hasil</button>
-                <button class="btn btn-primary" onclick="resetSimulation()"><i class="fa-solid fa-rotate-right"></i> Ulangi Simulasi</button>
+            <div class="page-actions">
+                <button class="btn btn-outline btn-lg" onclick="navigateTo('comparison')"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+                <button class="btn btn-outline btn-lg" onclick="window.print()"><i class="fa-solid fa-print"></i> Cetak Hasil</button>
+                <button class="btn btn-primary btn-lg" onclick="resetSimulation()"><i class="fa-solid fa-rotate-right"></i> Ulangi Simulasi</button>
             </div>
         </div>
     `;
@@ -488,7 +502,7 @@ function renderAllPrograms() {
         html += `
             <div class="recommendation-card" style="animation: fadeIn 0.5s ${delay}s both;">
                 <div class="card-icon-wrapper">
-                    <i class="fa-solid fa-book-open"></i>
+                    <i class="fa-solid ${prog.icon}"></i>
                 </div>
                 <h3>${prog.name}</h3>
                 <p class="desc">${prog.desc}</p>
@@ -518,7 +532,7 @@ function openProgramModal(id) {
     modalContent.innerHTML = `
         <div style="text-align: center; margin-bottom: 1.5rem;">
             <div class="card-icon-wrapper" style="margin: 0 auto 1rem;">
-                <i class="fa-solid fa-graduation-cap"></i>
+                <i class="fa-solid ${prog.icon}"></i>
             </div>
             <h2 id="modal-title" style="color: var(--color-text-dark); margin-bottom: 0.5rem;">${prog.name}</h2>
             <span class="badge-neutral" style="display: inline-block;">Kategori: ${catName}</span>
