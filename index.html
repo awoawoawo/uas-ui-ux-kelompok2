@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pathfinder - Dashboard Simulasi Program Studi</title>
+    <title>SimProdi - Dashboard Simulasi Program Studi</title>
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +14,7 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!-- Accessibility: Skip to main content -->
     <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
@@ -21,9 +23,9 @@
     <header class="navbar">
         <div class="container nav-container">
             <div class="logo" data-route="landing" tabindex="0" role="button">
-                <i class="fa-solid fa-compass text-primary"></i> <span>Pathfinder</span>
+                <i class="fa-solid fa-compass text-primary"></i> <span>SimProdi</span>
             </div>
-            
+
             <!-- Mobile Menu Toggle -->
             <button class="mobile-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
@@ -44,26 +46,28 @@
     <!-- Main Content Area (Dynamic Views injected here) -->
     <main id="main-content" class="container">
         <!-- View containers: Only one active at a time -->
-        
+
         <section id="view-landing" class="view active">
             <div class="hero-section text-center">
                 <h1 class="hero-title">Temukan Program Studi yang <span class="text-primary">Tepat Untukmu</span></h1>
-                <p class="hero-subtitle">Simulasikan minat, bakat, dan potensimu. Kami bantu temukan kecocokan jurusan kuliah yang ideal agar masa depanmu lebih terarah.</p>
+                <p class="hero-subtitle">Masa depan yang cerah dimulai dari pilihan yang tepat. Melalui tes berbasis psikologi interaktif, kami akan membantu Anda menganalisis minat, bakat terpendam, serta potensi karir untuk merekomendasikan program studi yang paling ideal. Mulailah langkah pertama Anda menuju kesuksesan akademis dan profesional hari ini!</p>
                 <div class="hero-actions">
                     <button class="btn btn-primary btn-lg" id="btn-start-simulation">
                         <i class="fa-solid fa-rocket"></i> Mulai Simulasi Sekarang
                     </button>
-                    <button class="btn btn-outline btn-lg" onclick="document.querySelector('.nav-item[data-route=\'all-programs\']').click()">
+                    <button class="btn btn-outline btn-lg"
+                        onclick="document.querySelector('.nav-item[data-route=\'all-programs\']').click()">
                         Lihat Daftar Prodi
                     </button>
                 </div>
             </div>
-            
+
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-list-check"></i></div>
                     <h3>Kuesioner Presisi</h3>
-                    <p>Pertanyaan dirancang berdasarkan indikator psikologis dasar untuk mengukur minat dominan Anda.</p>
+                    <p>Pertanyaan dirancang berdasarkan indikator psikologis dasar untuk mengukur minat dominan Anda.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
@@ -91,7 +95,7 @@
                 <div id="quiz-content" class="quiz-content">
                     <!-- Questions injected by JS -->
                 </div>
-                
+
                 <div class="quiz-actions">
                     <button class="btn btn-outline" id="btn-quiz-prev" disabled>Sebelumnya</button>
                     <button class="btn btn-primary" id="btn-quiz-next">Selanjutnya</button>
@@ -110,14 +114,16 @@
 
         <section id="view-all-programs" class="view hidden" aria-hidden="true">
             <div class="text-center" style="margin-top: 2rem; margin-bottom: 4rem;">
-                <h2 style="font-size: 2.25rem; font-weight: 800; color: var(--color-text-dark); margin-bottom: 1rem;">Daftar Program Studi</h2>
-                <p class="text-muted" style="font-size: 1.125rem;">Jelajahi seluruh program studi yang tersedia beserta detail lengkapnya.</p>
+                <h2 style="font-size: 2.25rem; font-weight: 800; color: var(--color-text-dark); margin-bottom: 1rem;">
+                    Daftar Program Studi</h2>
+                <p class="text-muted" style="font-size: 1.125rem;">Jelajahi seluruh program studi yang tersedia beserta
+                    detail lengkapnya.</p>
             </div>
             <div id="all-programs-grid" class="recommendation-grid">
                 <!-- Programs injected here -->
             </div>
         </section>
-        
+
         <!-- Detail Modal -->
         <div id="program-modal" class="modal-overlay hidden" aria-hidden="true">
             <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -132,11 +138,12 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container text-center">
-            <p>&copy; 2026 Pathfinder - Sistem Simulasi Pemilihan Program Studi. Dibangun dengan prinsip UCD & Aksesibilitas.</p>
+            <p>&copy; 2026 SimProdi - Sistem Simulasi Pemilihan Program Studi.</p>
         </div>
     </footer>
 
     <!-- Main Script -->
     <script src="js/app.js"></script>
 </body>
+
 </html>
