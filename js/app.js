@@ -204,7 +204,7 @@ function renderQuestion() {
     const btnNext = document.getElementById('btn-quiz-next');
     
     if(btnPrev) {
-        btnPrev.disabled = AppState.currentQuestionIndex === 0;
+        btnPrev.disabled = false;
         // Re-attach safely
         const newBtnPrev = btnPrev.cloneNode(true);
         btnPrev.parentNode.replaceChild(newBtnPrev, btnPrev);
@@ -212,6 +212,8 @@ function renderQuestion() {
             if(AppState.currentQuestionIndex > 0) {
                 AppState.currentQuestionIndex--;
                 renderQuestion();
+            } else {
+                navigateTo('landing');
             }
         });
     }
