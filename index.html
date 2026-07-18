@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathfinder - Dashboard Simulasi Program Studi</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons (optional, but good for UX) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Accessibility: Skip to main content -->
+    <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
+
+    <!-- Header & Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo" data-route="landing" tabindex="0" role="button">
+                <i class="fa-solid fa-compass text-primary"></i> <span>Pathfinder</span>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links" id="nav-links">
+                <button class="nav-item active" data-route="landing">Beranda</button>
+                <button class="nav-item" data-route="questionnaire">Simulasi</button>
+                <button class="nav-item" data-route="recommendation" disabled aria-disabled="true">Rekomendasi</button>
+                <button class="nav-item" data-route="comparison" disabled aria-disabled="true">Bandingkan</button>
+                <button class="nav-item" data-route="summary" disabled aria-disabled="true">Ringkasan</button>
+                <button class="nav-item" data-route="all-programs">Daftar Prodi</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area (Dynamic Views injected here) -->
+    <main id="main-content" class="container">
+        <!-- View containers: Only one active at a time -->
+        
+        <section id="view-landing" class="view active">
+            <div class="hero-section text-center">
+                <h1 class="hero-title">Temukan Program Studi yang <span class="text-primary">Tepat Untukmu</span></h1>
+                <p class="hero-subtitle">Simulasikan minat, bakat, dan potensimu. Kami bantu temukan kecocokan jurusan kuliah yang ideal agar masa depanmu lebih terarah.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-lg" id="btn-start-simulation">
+                        <i class="fa-solid fa-rocket"></i> Mulai Simulasi Sekarang
+                    </button>
+                    <button class="btn btn-outline btn-lg" onclick="document.querySelector('.nav-item[data-route=\'all-programs\']').click()">
+                        Lihat Daftar Prodi
+                    </button>
+                </div>
+                <div class="hero-image-wrapper" style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; border-radius: 1rem; overflow: hidden; box-shadow: var(--shadow-lg);">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Mahasiswa berdiskusi di kampus" style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 400px;" />
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <h3>Kuesioner Presisi</h3>
+                    <p>Pertanyaan dirancang berdasarkan indikator psikologis dasar untuk mengukur minat dominan Anda.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Hasil Real-time</h3>
+                    <p>Mesin rekomendasi kami akan secara otomatis menghitung kecocokan prodi tanpa menunggu lama.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h3>Perbandingan Rinci</h3>
+                    <p>Bandingkan biaya, durasi, dan prospek karir secara berjejer untuk keputusan yang mantap.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-questionnaire" class="view hidden" aria-hidden="true">
+            <div class="questionnaire-container">
+                <div class="progress-header">
+                    <h2 class="section-title">Kuesioner Minat & Bakat</h2>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="quiz-progress-bar" style="width: 0%;"></div>
+                    </div>
+                    <p class="progress-text" id="quiz-progress-text">Pertanyaan 1 dari 5</p>
+                </div>
+
+                <div id="quiz-content" class="quiz-content">
+                    <!-- Questions injected by JS -->
+                </div>
+                
+                <div class="quiz-actions">
+                    <button class="btn btn-outline" id="btn-quiz-prev" disabled>Sebelumnya</button>
+                    <button class="btn btn-primary" id="btn-quiz-next">Selanjutnya</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-recommendation" class="view hidden" aria-hidden="true">
+        </section>
+
+        <section id="view-comparison" class="view hidden" aria-hidden="true">
+        </section>
+
+        <section id="view-summary" class="view hidden" aria-hidden="true">
+        </section>
+
+        <section id="view-all-programs" class="view hidden" aria-hidden="true">
+            <div class="text-center" style="margin-top: 2rem; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.25rem; font-weight: 800; color: var(--color-text-dark); margin-bottom: 1rem;">Daftar Program Studi</h2>
+                <p class="text-muted" style="font-size: 1.125rem;">Jelajahi seluruh program studi yang tersedia beserta detail lengkapnya.</p>
+            </div>
+            <div id="all-programs-grid" class="recommendation-grid">
+                <!-- Programs injected here -->
+            </div>
+        </section>
+        
+        <!-- Detail Modal -->
+        <div id="program-modal" class="modal-overlay hidden" aria-hidden="true">
+            <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <button class="modal-close" id="modal-close-btn" aria-label="Tutup dialog">&times;</button>
+                <div id="modal-content">
+                    <!-- Modal injected content -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Pathfinder - Sistem Simulasi Pemilihan Program Studi. Dibangun dengan prinsip UCD & Aksesibilitas.</p>
+        </div>
+    </footer>
+
+    <!-- Main Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
